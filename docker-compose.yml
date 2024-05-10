@@ -1,0 +1,16 @@
+version: '3.7'
+services:
+  phase1:
+    build: ./phase1
+    container_name: phase1
+    tty: true
+    ports:
+      - 3002:3000
+    stdin_open: true
+    # プロジェクトディレクトリにマウントする
+    volumes:
+      - ./phase1/team2:/app/team2
+    working_dir: /app/team2
+    environment:
+      - WATCHPACK_POLLING=true
+    command: sh -c "npm i && npm run dev"
